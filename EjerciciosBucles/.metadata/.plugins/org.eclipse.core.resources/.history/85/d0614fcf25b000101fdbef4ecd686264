@@ -1,0 +1,51 @@
+package Bucles;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Ejercicio32 {
+
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
+		System.out.println("Intenta adivinar el numero aleatorio que ha seleccionado el programa.");
+		
+		double numeroAleatorio = (Math.random()*100 +1);
+		int numeroEscrito = Integer.parseInt(br.readLine());
+		int intentos = 9;
+		
+		System.out.println(numeroAleatorio);
+		
+		if (numeroAleatorio > numeroEscrito) {
+				System.out.println("El numero aleatorio es mayor que el número que has escrito.");
+			
+			System.out.println("Te quedan " + intentos + " intentos.");
+			
+			intentos--;
+			
+		} else if (numeroAleatorio < numeroEscrito) {
+				System.out.println("El numero aleatorio es menor que el número que has escrito.");
+			
+			System.out.println("Te quedan " + intentos + " intentos.");
+			
+			intentos--;
+		}else if(numeroAleatorio == numeroEscrito) {
+				System.out.println("Felicidades has acertado el número aleatorio.");
+			
+				if (intentos > 0) {
+					System.out.println("Te han sobrado " + intentos + " intentos.");
+					
+				}else {
+					System.out.println("Te has quedado sin intentos.");
+				}
+			
+			
+
+			
+		}
+	
+
+	}
+
+}

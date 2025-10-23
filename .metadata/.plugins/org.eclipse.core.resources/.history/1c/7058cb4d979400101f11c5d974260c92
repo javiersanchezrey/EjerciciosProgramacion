@@ -1,0 +1,44 @@
+package ejerciciosRepaso;
+
+public class EjVariables {
+
+	public static void main(String[] args) {
+		
+		//primer ejercicio repaso
+		
+		System.out.println("Me llamo Javier. \nTengo 20 años. \nVivo en Salamanca.");
+		
+		//Segundo ejercicio repaso
+		
+		byte numPequeño = 12;
+			System.out.println("Este es el numero pequeño que he seleccionado " + numPequeño);
+		
+		double españa = 47000000;
+			System.out.println("Población de España es " + españa);
+		
+		float altura = 1.74f;
+			System.out.println("Mi altura actual es " + altura);
+		
+		long sol = 150000000;
+			System.out.println("la distancia de la Tierra al Sol es " + sol);
+			
+		double café = 1.80;
+			System.out.println("Que caro esta el café de mierda " + café);
+			
+		//Tercer ejercicio de repaso
+			
+		char letraNombre = 'J';
+		
+		char letraRara = '@';
+		
+		
+		System.out.println("Es mi letra mas mi edad " + letraNombre + 21);
+		
+		System.out.println("Espero que todo sea igual de fácil " + letraNombre + letraRara);
+			
+			
+			
+			
+	}
+
+}

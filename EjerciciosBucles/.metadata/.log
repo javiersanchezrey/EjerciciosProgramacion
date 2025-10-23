@@ -1,0 +1,119 @@
+!SESSION 2025-10-22 20:18:02.887 -----------------------------------------------
+eclipse.buildId=4.37.0.20250905-1455
+java.version=25
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=aarch64, WS=cocoa, NL=es_ES
+Framework arguments:  -product org.eclipse.epp.package.java.product -keyring /Users/javierssanchezrey/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch aarch64 -product org.eclipse.epp.package.java.product -keyring /Users/javierssanchezrey/.eclipse_keyring
+
+!ENTRY ch.qos.logback.classic 1 0 2025-10-22 20:18:03.901
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY org.eclipse.lemminx.uber-jar 4 0 2025-10-22 20:18:03.989
+!MESSAGE bundle org.eclipse.lemminx.uber-jar:0.31.0 (792) Component descriptor entry 'OSGI-INF/*.xml' not found
+
+!ENTRY ch.qos.logback.classic 1 0 2025-10-22 20:18:28.362
+!MESSAGE Logback config file: /Users/javierssanchezrey/Desktop/DAW/EjerciciosBucles/.metadata/.plugins/org.eclipse.m2e.logback/logback.2.7.100.20250418-1315.xml
+
+!ENTRY org.eclipse.ui 2 0 2025-10-22 20:18:28.516
+!MESSAGE Warnings while parsing the images from the 'org.eclipse.ui.commandImages' extension point.
+!SUBENTRY 1 org.eclipse.ui 2 0 2025-10-22 20:18:28.516
+!MESSAGE Cannot bind to an undefined command: plug-in='com.genuitec.eclipse.theming.ui', id='com.genuitec.myeclipse.help.darktheme.commandid'
+
+!ENTRY com.genuitec.eclipse.theming.ui 1 0 2025-10-22 20:18:28.702
+!MESSAGE A DevStyle Theme is being activated on this workspace; preparing colors and configuration
+
+!ENTRY com.genuitec.eclipse.theming.ui 1 0 2025-10-22 20:18:28.707
+!MESSAGE DevStyle has archived current color configurations to alternate preferences - will be restored when switching out of the DevStyle Theme
+
+!ENTRY com.genuitec.eclipse.codetogether.ui 1 0 2025-10-22 20:18:32.311
+!MESSAGE Proxies not enabled
+
+!ENTRY com.genuitec.eclipse.codetogether.ui 1 0 2025-10-22 20:18:32.311
+!MESSAGE No proxy data found for url: https://live.codetogether.io/ct-url
+!SESSION 2025-10-23 16:21:55.138 -----------------------------------------------
+eclipse.buildId=4.37.0.20250905-1455
+java.version=25
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=aarch64, WS=cocoa, NL=es_ES
+Framework arguments:  -product org.eclipse.epp.package.java.product -keyring /Users/javierssanchezrey/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch aarch64 -product org.eclipse.epp.package.java.product -keyring /Users/javierssanchezrey/.eclipse_keyring
+
+!ENTRY ch.qos.logback.classic 1 0 2025-10-23 16:21:56.033
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY org.eclipse.lemminx.uber-jar 4 0 2025-10-23 16:21:56.122
+!MESSAGE bundle org.eclipse.lemminx.uber-jar:0.31.0 (792) Component descriptor entry 'OSGI-INF/*.xml' not found
+
+!ENTRY ch.qos.logback.classic 1 0 2025-10-23 16:49:50.397
+!MESSAGE Logback config file: /Users/javierssanchezrey/Desktop/DAW/EjerciciosBucles/.metadata/.plugins/org.eclipse.m2e.logback/logback.2.7.100.20250418-1315.xml
+
+!ENTRY com.genuitec.eclipse.codetogether.ui 1 0 2025-10-23 16:49:54.852
+!MESSAGE Proxies not enabled
+
+!ENTRY com.genuitec.eclipse.codetogether.ui 1 0 2025-10-23 16:49:54.853
+!MESSAGE No proxy data found for url: https://live.codetogether.io/ct-url
+
+!ENTRY org.eclipse.debug.core 4 125 2025-10-23 17:24:04.385
+!MESSAGE Error logged from Debug Core: 
+!STACK 0
+java.io.IOException: Stream closed
+	at java.base/java.io.BufferedInputStream.ensureOpen(BufferedInputStream.java:207)
+	at java.base/java.io.BufferedInputStream.read(BufferedInputStream.java:379)
+	at java.base/java.io.FilterInputStream.read(FilterInputStream.java:95)
+	at org.eclipse.debug.internal.core.OutputStreamMonitor.internalRead(OutputStreamMonitor.java:235)
+	at org.eclipse.debug.internal.core.OutputStreamMonitor.read(OutputStreamMonitor.java:211)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+
+!ENTRY com.genuitec.eclipse.codetogether.ui 1 0 2025-10-23 17:40:56.884
+!MESSAGE Proxies not enabled
+
+!ENTRY com.genuitec.eclipse.codetogether.ui 1 0 2025-10-23 17:40:56.885
+!MESSAGE No proxy data found for url: https://live.codetogether.io/ct-url
+
+!ENTRY org.eclipse.jface 2 0 2025-10-23 17:59:18.292
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2025-10-23 17:59:18.292
+!MESSAGE A conflict occurred for COMMAND+W:
+Binding(COMMAND+W,
+	ParameterizedCommand(Command(org.eclipse.ui.cocoa.closeDialog,Close Dialog,
+		Closes the active Dialog,
+		Category(org.eclipse.ui.category.window,Window,null,true),
+		WorkbenchHandlerServiceHandler("org.eclipse.ui.cocoa.closeDialog"),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.dialog,,,system)
+Binding(COMMAND+W,
+	ParameterizedCommand(Command(org.eclipse.ui.file.close,Close,
+		Close the active editor,
+		Category(org.eclipse.ui.category.file,File,null,true),
+		WorkbenchHandlerServiceHandler("org.eclipse.ui.file.close"),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.eclipse.debug.core 4 125 2025-10-23 18:10:36.410
+!MESSAGE Error logged from Debug Core: 
+!STACK 0
+java.io.IOException: Stream closed
+	at java.base/java.io.BufferedInputStream.getBufIfOpen(BufferedInputStream.java:189)
+	at java.base/java.io.BufferedInputStream.getBufIfOpen(BufferedInputStream.java:199)
+	at java.base/java.io.BufferedInputStream.read1(BufferedInputStream.java:335)
+	at java.base/java.io.BufferedInputStream.read(BufferedInputStream.java:388)
+	at java.base/java.io.FilterInputStream.read(FilterInputStream.java:95)
+	at org.eclipse.debug.internal.core.OutputStreamMonitor.internalRead(OutputStreamMonitor.java:235)
+	at org.eclipse.debug.internal.core.OutputStreamMonitor.read(OutputStreamMonitor.java:211)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+
+!ENTRY org.eclipse.debug.core 4 125 2025-10-23 18:13:10.929
+!MESSAGE Error logged from Debug Core: 
+!STACK 0
+java.io.IOException: Stream closed
+	at java.base/java.io.BufferedInputStream.getBufIfOpen(BufferedInputStream.java:189)
+	at java.base/java.io.BufferedInputStream.getBufIfOpen(BufferedInputStream.java:199)
+	at java.base/java.io.BufferedInputStream.read1(BufferedInputStream.java:335)
+	at java.base/java.io.BufferedInputStream.read(BufferedInputStream.java:388)
+	at java.base/java.io.FilterInputStream.read(FilterInputStream.java:95)
+	at org.eclipse.debug.internal.core.OutputStreamMonitor.internalRead(OutputStreamMonitor.java:235)
+	at org.eclipse.debug.internal.core.OutputStreamMonitor.read(OutputStreamMonitor.java:211)
+	at java.base/java.lang.Thread.run(Thread.java:1474)

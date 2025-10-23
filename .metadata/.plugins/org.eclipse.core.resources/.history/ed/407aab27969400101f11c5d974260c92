@@ -1,0 +1,18 @@
+package ejerciciosRepaso;
+
+public class EjVariables {
+
+	public static void main(String[] args) {
+		
+		System.out.println("Me llamo Javier. \nTengo 20 años. \nVivo en Salamanca.");
+		
+		
+		byte numPequeño = 12;
+			System.out.println("Este es el numero pequeño que he seleccionado " + numPequeño);
+		
+		
+		
+		
+	}
+
+}

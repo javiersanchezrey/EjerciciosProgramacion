@@ -1,0 +1,65 @@
+package Repaso;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class ejercicio8 {
+
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
+	System.out.println("Escribe el tipo de vehiculo que quieres introducir al parking.");
+		String vehiculo = br.readLine();
+		
+	System.out.println("¿Cuánto tiempo vas a estar en el parking?");
+		double horas = Double.parseDouble(br.readLine());
+		
+	double pago = 0;
+	
+		if (horas == 1 && vehiculo.equalsIgnoreCase("Moto")) {
+			pago = horas * 2;
+		System.out.println("El parking por estacionar 1 hora con una moto es de " + pago + " €.");
+		
+		} else if (horas > 2 && horas < 4 && vehiculo.equalsIgnoreCase("Moto")) {
+			pago = (horas * 1.50) + 2;
+		System.out.println("El parking por estacionar con una moto " + horas + " horas es de " + pago + " €.");
+		
+		} else if (horas > 5 && vehiculo.equalsIgnoreCase("Moto")) {
+			pago = ((1.50 * 2) + 2 + (horas - 5) * 1);
+		System.out.println("El parking por estacionar con una moto " + horas + " horas es de " + pago + " €.");
+		
+		}
+		
+		if (horas == 1 && vehiculo.equalsIgnoreCase("Coche")) {
+			pago = horas * 3;
+		System.out.println("El parking por estacionar 1 hora con un coche es de " + pago + " €.");
+		
+		} else if (horas > 2 && horas < 4 && vehiculo.equalsIgnoreCase("Coche")) {
+			pago = (horas * 2) + 3;
+		System.out.println("El parking por estacionar con un coche " + horas + " horas es de " + pago + " €.");
+		
+		} else if (horas > 5 && vehiculo.equalsIgnoreCase("Coche")) {
+			pago = ((2 * 2) + 3 + (horas - 5) * 1.50);
+		System.out.println("El parking por estacionar con un coche " + horas + " horas es de " + pago + " €.");
+		
+		}
+		
+		if (horas == 1 && vehiculo.equalsIgnoreCase("Furgoneta")) {
+			pago = horas * 5;
+		System.out.println("El parking por estacionar 1 hora con un coche es de " + pago + " €.");
+		
+		} else if (horas > 2 && horas < 4 && vehiculo.equalsIgnoreCase("Furgoneta")) {
+			pago = (horas * 3) + 5;
+		System.out.println("El parking por estacionar con un coche " + horas + " horas es de " + pago + " €.");
+		
+		} else if (horas > 5 && vehiculo.equalsIgnoreCase("Furgoneta")) {
+			pago = ((3 * 2) + 5 + (horas - 5) * 2);
+		System.out.println("El parking por estacionar con un coche " + horas + " horas es de " + pago + " €.");
+		
+		}
+		
+
+	}
+
+}

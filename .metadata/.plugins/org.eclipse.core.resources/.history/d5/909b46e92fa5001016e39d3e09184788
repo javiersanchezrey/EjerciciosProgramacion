@@ -1,0 +1,47 @@
+package Repaso;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class ejercicio7 {
+
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+		System.out.println("¿Cuántas horas Extra has trabajado?");
+	int horasTrabajando = Integer.parseInt(br.readLine());
+	
+		System.out.println("¿Trabajaste en un día festivo?");
+	char festivo = br.readLine().toLowerCase().charAt(0);
+	
+	int pago = 0 ;
+	
+		if(horasTrabajando < 35 && festivo == 'n') {
+			pago = horasTrabajando * 12;
+		System.out.println("Cobrarías " + pago + " por las horas trabajadas.");
+		
+		} else if (horasTrabajando < 35 && festivo == 's') {
+			pago = (horasTrabajando * 12) + 50;
+		System.out.println("Cobrarías " + pago + " por las horas trabajadas, en un día festivo");
+			
+		} else if (horasTrabajando >= 36 && horasTrabajando <= 40 && festivo == 'n') {
+			pago = (12*35) + ((horasTrabajando - 35)* 15);
+		System.out.println("Cobrarías " + pago + " por las horas trabajadas.");
+			
+		} else if (horasTrabajando >= 36 && horasTrabajando <= 40 && festivo == 's') {
+			pago = ((12*35) + ((horasTrabajando - 35)* 15))+ 50;
+		System.out.println("Cobrarías " + pago + " por las horas trabajadas, en un día festivo");
+			
+		} else if (horasTrabajando > 40 && festivo == 'n' ) {
+			pago = (12*35) + (4 * 15) + ((horasTrabajando - 40) * 18);
+		System.out.println("Cobrarías " + pago + " por las horas trabajadas.");
+		
+		} else if (horasTrabajando > 40 && festivo == 's' ) {
+			pago = ((12*35) + (4 * 15) + ((horasTrabajando - 40) * 18)) + 50;
+		System.out.println("Cobrarías \" + pago + \" por las horas trabajadas, en un día festivo");
+		
+		}
+	}
+
+}

@@ -1,0 +1,27 @@
+package Bucles;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Ejercicio26 {
+
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
+		int numero = 0;
+		double media;
+		int contador = 0;
+		
+		while (contador <= 10) {
+			System.out.println("Introduce otro numero: ");
+			
+			 numero = Integer.parseInt(br.readLine());
+			contador++;
+			
+		}
+			media = numero / 10;
+		System.out.println("La media de los numero introducidos es: " + media);
+	}
+
+}

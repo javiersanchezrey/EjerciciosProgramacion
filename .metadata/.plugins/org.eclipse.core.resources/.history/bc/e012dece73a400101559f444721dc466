@@ -1,0 +1,36 @@
+package Repaso;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class ejercicio2 {
+
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
+		System.out.println("Introduce tu contraseña");
+	String contraseña = br.readLine();
+	
+		System.out.println("La contraseña lleva un numero? S/N");
+	char llevaNumero = br.readLine().toUpperCase().charAt(0);
+	
+		System.out.println("La contraseña lleva una mayuscula? S/N");
+	char llevaMayuscula = br.readLine().toUpperCase().charAt(0);
+	
+	if(llevaNumero == 'S' && llevaMayuscula == 'S' && contraseña.length() >= 8) {
+		System.out.println("La contraseña es válida");
+	}else if (llevaNumero == 'N' && llevaMayuscula == 'S' && contraseña.length() >= 8){
+		System.out.println("La contraseña es inválida, porque no lleva ningún número");
+	}else if (llevaNumero == 'S' && llevaMayuscula == 'N' && contraseña.length() >= 8){
+		System.out.println("La contraseña es inválida, porque no lleva ningúna mayúscula");
+	}else if (llevaNumero == 'S' && llevaMayuscula == 'S' && contraseña.length() < 8){
+		System.out.println("La contraseña es inválida, porque no cumple con el número de caracteres.");
+	}else if (llevaNumero == 'S' && llevaMayuscula == 'N' && contraseña.length() < 8){
+		System.out.println("La contraseña es inválida, porque no cumple con el número de caracteres.");
+	}else if (llevaNumero == 'N' && llevaMayuscula == 'N' && contraseña.length() < 8){
+		System.out.println("La contraseña es inválida, porque no cumple con el número de caracteres.");
+	}
+	
+	}
+}
