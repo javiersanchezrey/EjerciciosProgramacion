@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class ejercicio8 {
-
+//Ejercicio Adrian
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
@@ -247,3 +247,4 @@ System.out.println("Te has leido " + capitulosTotalesLeidos + " capitulos y te h
 	}
 	
 }
+
