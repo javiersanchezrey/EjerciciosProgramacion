@@ -9,10 +9,6 @@ public class Ejercicio8 {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
-		int distancia = 0;
-		double consumoGasolina;
-		double precioGasolina;
-		
 			boolean salir = false;
 			
 			System.out.println("=== BIENVENIDO A Control de Biblioteca Parental ===");
@@ -34,215 +30,215 @@ public class Ejercicio8 {
 			case 1:
 			System.out.println("1. Catalogar un libro");
 
-			System.out.println("¿Podrias decirme el titulo del libro?");
-				String titulo = br.readLine();
+			System.out.println("¿Cuál es el titulo del libro?");
+				String tituloLibro = br.readLine();
 				
-			System.out.println("¿Cuál ha sido su año de publicación?");
+			System.out.println("¿Cuantas paginas tiene el libro?");
+				int numeroPaginas = Integer.parseInt(br.readLine());
+				
+			System.out.println("¿Cuál es su año de publicación?");
 				String añoPublicacion = br.readLine();
 				
 			System.out.println("¿Cuál es su genero?");
 				String generoLibro = br.readLine();
 				
-			String codigoEstanteria = generoLibro.toUpperCase() + añoPublicacion.substring (2) + titulo.charAt(0); 
+			
+			String codigoEstanteria = generoLibro.toUpperCase() + añoPublicacion.substring(2) + tituloLibro.toUpperCase().charAt(0) ;
 
-			System.out.println("El codigo de la estanteria donde se encuentra este libro es: " + codigoEstanteria);
+			System.out.println("El codigo de la estanteria es: " + codigoEstanteria);
 			
+			int tiempodeLectura = numeroPaginas * 2;
 			
-			System.out.println("Cuantas paginas tiene tu libro?");
-				int paginasLibro = Integer.parseInt(br.readLine());
-				
-			int tiempoLectura = paginasLibro * 2;
-			int horas = tiempoLectura / 60;
-			int minutos = tiempoLectura % 60;
+			int horas = tiempodeLectura / 60;
+			int minutos = tiempodeLectura % 60;
 			
+			System.out.println("El tiempo estimado de lectura son: " + tiempodeLectura + " minutos, lo qeu viene a ser: " + horas + " horas y " + minutos + " minutos.");
 			
-			
-			System.out.println("El tiempo estimado de lectura son: " + tiempoLectura + " minnutos, es decir que serán " + horas + " horas y " + minutos +" minutos.");
 			
 			break;
 			
-			//PREGUNTAR A ADRIAN
-			//PREGUNTAR A ADRIAN
-			//PREGUNTAR A ADRIAN
-			//PREGUNTAR A ADRIAN
 			case 2:
-			System.out.println("2. Sesion de Lectura");
 			
-			System.out.println("¿Cuantos capitulos tiene tu libro?");
+				int paginasLeidas = 0;
+				
+				int capitulosCompletados = 0;
+				
+				int capitulosFaltantes = 0;
+				
+				int paginasLeidasTotal = 0;
+				
+			System.out.println("¿Cuantos capitulos tiene el libro?");
 				int capitulosLibro = Integer.parseInt(br.readLine());
 				
-				int paginasLeidas = 0;
-				int paginasLeidasTotales = 0;
+				for (int i = 0; i < capitulosLibro; i++) {
 					
-				int capitulosTotalesLeidos = 0;
-				
-					for ( int i = 0; i < capitulosLibro; i++) {
-				System.out.println("¿Cuantas paginas te has leido del " + (i+1) + "º capitulo?");
+					System.out.println("¿Cuantas paginas te has leido del capitulo " + (i+1) + "?");
 						paginasLeidas = Integer.parseInt(br.readLine());
-									
-						paginasLeidasTotales += paginasLeidas;
 					
-					if (paginasLeidas == 0) {
-						System.out.println("No has acabado el capitulo.");
-						break;
-					}	
-					
-					capitulosTotalesLeidos ++;
-					
-					}
+					if (paginasLeidas != 0) {
 						
-System.out.println("Te has leido " + capitulosTotalesLeidos + " capitulos y te has leido " + paginasLeidasTotales + " paginas.");
-			
-			
+						capitulosCompletados++;
+						
+					}
+					
+					paginasLeidasTotal +=paginasLeidas;
+				}
+				
+				capitulosFaltantes = capitulosLibro - capitulosCompletados;
+				
+				System.out.println("Has terminado de leer.");
+				System.out.println();
+				
+				System.out.println("Los capitulos completados han sido " + capitulosCompletados + " has leido " + paginasLeidasTotal + " paginas");
+				
+				if(capitulosFaltantes > 0) {
+					
+					System.out.println("Te quedan " + capitulosFaltantes + " capitulo");
+					
+				} else if (capitulosFaltantes == 0) {
+					
+					System.out.println("Felicidades has acabado el libro.");
+				}
+					
+				
 			break;
-			
-			//PREGUNTAR A ADRIAN
-			//PREGUNTAR A ADRIAN
-			//PREGUNTAR A ADRIAN
-			//PREGUNTAR A ADRIAN
-			//PREGUNTAR A ADRIAN
-			//PREGUNTAR A ADRIAN
-			
 			
 			case 3:
 			System.out.println("3. Valorar Saga Completa");
 			
-				System.out.println("¿Puedes escribir el nombre de la saga de libros completa?");
-			String sagaLibros = br.readLine();
+			//Adrian ha dicho que un ejercicio del examen era como lo que esta aqui debajo.
 			
-				System.out.println("¿Cuantos libros tiene esta saga?");
-			int numeroLibrosSaga = Integer.parseInt(br.readLine());
+			double notaMediaTemporada = 0;
+			double notasDeLosCapitulos = 0;
 			
-			double notaLibros = 0;
-			double notaSaga = 0;
-			double notaMediaSaga = 0;
+			double notaCapitulo = 0;
+			double notaMediaSerie = 0;
 			
-			for ( int i = 0; i < numeroLibrosSaga; i++) {
-				System.out.println("Escribe la nota del " + (i+1) + "º libro.");
-				notaLibros = Double.parseDouble(br.readLine());
+			double notaMediaSerieFinal= 0;
+			
+			double sumaNotaMediaTemporada = 0;
+		
+		System.out.println("¿Cuantos temporadas tiene la serie que estas viendo?");
+			int temporadasSerie = Integer.parseInt(br.readLine());
+			
+		for (int i = 0; i < temporadasSerie; i++) {
+			
+			notasDeLosCapitulos = 0;
+			
+			System.out.println("¿Cuantos capitulos tiene " + (i+1) + " temporada?");
+				int capitulosTemporada = Integer.parseInt(br.readLine());
 				
-				if (notaLibros < 0 || notaLibros > 10) {
-		System.out.println("Lo siento pero la nota introducida es invalida. \nRepita la nota.");
-			notaLibros = Double.parseDouble(br.readLine());
+				
+				for (int j = 0; j < capitulosTemporada; j++) {
+					
+			System.out.println("¿Que nota le das al " + (j+1) + "º capitulo de la temporada " + (i+1));
+					notaCapitulo = Double.parseDouble(br.readLine());
+					
+				while (notaCapitulo < 0 || notaCapitulo > 10) {
+					System.out.println("Lo sieto pero la nota introducida no es valida, solo valen notas del 1 al 10");
+					notaCapitulo = Double.parseDouble(br.readLine());
 					
 				}
 				
-				System.out.println("La nota del " + (i+1) + "º libro es de: " + notaLibros);
+				notasDeLosCapitulos += notaCapitulo;
 				
-				notaSaga += notaLibros;
-			}
-			notaMediaSaga = notaSaga / numeroLibrosSaga;
-			
-			System.out.println("La media de la saga es de: " + notaMediaSaga);
-			
-			if (notaMediaSaga > 8) {
-				System.out.println("La saga es imprecindible");
+				notaMediaTemporada = notasDeLosCapitulos / capitulosTemporada;
+					
+				}
 				
-			}else if (notaMediaSaga > 6 && notaMediaSaga < 8) {
-				System.out.println("La saga es recomendable");
+				System.out.println("La nota Media de la temporada es de: " + notaMediaTemporada);
 				
-			} else {
-				System.out.println("La saga es Prescindible.");
-			}
+				sumaNotaMediaTemporada += notaMediaTemporada;		
+		}
 		
-				
+		notaMediaSerie = sumaNotaMediaTemporada / temporadasSerie;
+		
+		
+		
+		System.out.println("La nota media de la serie es: " + notaMediaSerie);
+		
 			break;
 			
 			case 4:
 			System.out.println("4. Recomendación Aleatoria.");
 			
-			System.out.println("¿Quieres una recomendación?");
+			System.out.println("¿Quieres una recomendacion aleatoria?");
+			
 			char recomendacion = br.readLine().toLowerCase().charAt(0);
 			
-		while (recomendacion == 's') {
-			
-			int adjetivos = (int) (Math.random()* 5 +1);
-			
-			String palabraAdjetivo = "";
-			
-			switch (adjetivos) {
-			case 1:
+			if (recomendacion != 's') {
+				System.out.println("Perfecto no quieres ninguna recomendacion.");
 				
-				palabraAdjetivo = "Gran";
+			}
+			
+			while (recomendacion == 's') {
 				
-			break;
-			
-			case 2:
-							
-				palabraAdjetivo = "Pequeño";
+			int adjetivos = (int) (Math.random()*5 +1);
 				
-			break;
-			
-			case 3:
-	
-				palabraAdjetivo = "Nuevo";
-	
-			break;
-
-			case 4:
-	
-				palabraAdjetivo = "Viejo";
-	
-			break;
-
-			case 5:
-	
-				palabraAdjetivo = "Último";
-	
-			break;
-			
+			String Adjetivos = "";
+				
+				switch (adjetivos){
+				
+					case 1:
+						Adjetivos = " Gran ";		
+					break;
+					
+					case 2:
+						Adjetivos = " Pequeño ";		
+					break;
+					
+					case 3:
+						Adjetivos = " Nuevo ";		
+					break;
+					
+					case 4:
+						Adjetivos = " Viejo ";		
+					break;
+					
+					case 5:
+						Adjetivos = " Último ";		
+					break;
+				
+				}
+				
+				
+			int sustantivos = (int) (Math.random()*5 +1);
+				
+			String Sustantivos = "";
+				
+				switch (sustantivos){
+				
+					case 1:
+						Sustantivos = " Libro ";		
+					break;
+					
+					case 2:
+						Sustantivos = " Historia ";		
+					break;
+					
+					case 3:
+						Sustantivos = " Misterio ";		
+					break;
+					
+					case 4:
+						Sustantivos = " Aventura ";		
+					break;
+					
+					case 5:
+						Sustantivos = " Secreto ";		
+					break;
+				
+				}
+				
+				System.out.println("El libro que te recomendamos es: " + Adjetivos + Sustantivos);
+				System.out.println();
+				
+				System.out.println("¿Quieres alguna otra recomendacion?");
+					recomendacion = br.readLine().toLowerCase().charAt(0);
 			}
 			
 			
-		int sustantivos = (int) (Math.random()* 5 +1);
 			
-		String palabraSustantivo = "";
-			
-			switch (sustantivos) {
-			case 1:
-				
-				palabraSustantivo = "Libro";
-				
-			break;
-			
-			case 2:
-							
-				palabraSustantivo = "Historia";
-				
-			break;
-			
-			case 3:
-	
-				palabraSustantivo = "Misterio";
-	
-			break;
-
-			case 4:
-	
-				palabraSustantivo = "Aventura";
-	
-			break;
-
-			case 5:
-	
-				palabraSustantivo = "Secreto";
-	
-			break;
-			
-			}
-			
-			int estrellas = (int) (Math.random()*5 +1);
-			
-			
-			System.out.println("La recomendación es: " + palabraAdjetivo + " " + palabraSustantivo + " y tiene " + estrellas + " estrellas.");
-			
-
-			System.out.println("¿Quieres otra recomendación?");
-				recomendacion = br.readLine().toLowerCase().charAt(0);
-			
-		}
-		
-		System.out.println("Buena elección, espero que te guste el libro.");
 			break;
 			
 			case 5:

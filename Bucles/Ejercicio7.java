@@ -85,35 +85,46 @@ public class Ejercicio7 {
 				
 			break;
 			
-			//PREGUNTAR A ADRIAN
-			//PREGUNTAR A ADRIAN
-			//PREGUNTAR A ADRIAN
-			//PREGUNTAR A ADRIAN
-			//PREGUNTAR A ADRIAN
+			
 			case 2:
-			System.out.println("2. Simular partidas de una ronda");
-			
-			System.out.println("¿Cuantos jugadores participan en la ronda?");
+				System.out.println("=== SIMULAR PARTIDAS DE UNA RONDA ===");
+				System.out.println("¿Cuántos jugadores participan? (debe ser número par): ");
 				int participantes = Integer.parseInt(br.readLine());
+		
+			if(participantes % 2 !=0) {
 				
-				while (participantes % 2 != 0) {
-					
-					System.out.println("Lo siento pero no pueden ser jugadores impares.\nCambia el numero de participantes a uno par.");
-					participantes = Integer.parseInt(br.readLine());	
+					System.out.println("El número de jugadores debe ser par.");
+				    break;
+			}
+				
+				System.out.println("--- RONDA DE PARTIDAS ---");
+				int Partidasnumero = participantes/2;
+				int victorias = 0;
+				int empates = 0;
+				for (int i = 1; i <= Partidasnumero; i++) {
+				    int resultado = (int)(Math.random() * 3) + 1;
+		System.out.println("Partida " + i + " (Jugador " + ((i * 2) - 1) + " vs Jugador " + (i * 2) + "):");
+				    switch (resultado) {
+				        case 1:
+				            System.out.println("Resultado: Gana Jugador " + ((i * 2) - 1) + " (+3 puntos)");
+				            victorias++;
+				            break;
+				        case 2:
+				            System.out.println("Resultado: Gana Jugador " + (i * 2) + " (+3 puntos)");
+				            victorias++;
+				            break;
+				        case 3:
+				            System.out.println("Resultado: Empate (+1 punto para cada uno)");
+				            empates++;
+				            break;
+				    }
 				}
-			
-				if (participantes % 2 == 0) {
-					
-					
-				}
-			
+				System.out.println("--- RESUMEN DE LA RONDA ---");
+				System.out.println("Total de partidas jugadas: " + Partidasnumero);
+				System.out.println("Victorias: " + victorias);
+				System.out.println("Empates: " + empates);
 			break;
 			
-			//PREGUNTAR A ADRIAN
-			//PREGUNTAR A ADRIAN
-			//PREGUNTAR A ADRIAN
-			//PREGUNTAR A ADRIAN
-			//PREGUNTAR A ADRIAN
 			
 			case 3:
 			System.out.println("3. Registrar tiempo de partidas");
