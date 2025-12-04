@@ -1,201 +1,261 @@
+package EjerciciosArrays;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Ejercicio44 {
 
-	public static void main(String[] args) throws IOException {
-		boolean salir = false;
-		
-		int[][] faltas = new int[4][5];
-		String[] alumnos = new String[4];
-		String[] modulos  = new String[4];
-		
-		do {
-			System.out.println("FALTAS COLEGIO");
-			System.out.println("Opción 1: Registro de Alumnos Y Asignaturas");
-			System.out.println("Opción 2: Registrar una falta..");
-			System.out.println("Opción 3: Mostrar tabla");
-			System.out.println("Opción 4: Perdida ev. continua");
-			
-			int opcion = leerInt("Introduce una opcion: ");
-			
-			switch(opcion) {
-			case 1:
-				opcion1(modulos, alumnos);
-				break;
-			case 2:
-				opcion2(alumnos, modulos, faltas);
-				break;
-			case 3:
-				opcion3(alumnos, modulos, faltas);
-				break;
-			case 4:
-				opcion4(alumnos, modulos, faltas);
-				break;
-			default:
-				System.out.println("Opcion no valida");
-			}
-			
-		}while(!salir);
-
-	}
+	public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	
 
-
-	public static void opcion4(String[] alumnos, String[] modulos, int[][] faltas) {
-		System.out.println("--EVALAUCION CONTINUA---");
+	//Apartado1.
+	public static void rellenarArrays(String [] alumnos, String [] modulos, int [][] matrizNumeroFaltas) throws IOException {
 		
-		boolean perdida = false;
-		for(int f=0; f<faltas.length; f++) {
-			for(int c=0; c<faltas[f].length; c++) {
-				if(faltas[f][c] >= 5) {
-					System.out.println("El alumno " + alumnos[f] + "en la asignatura "
-							   + modulos[c] + " ha perdido la evaluacion contunua pq tiene " + 
-							   faltas[f][c] + "faltas");
-					perdida = true;
+		//Rellenar Alumnos.
+		
+		String alumnosTotales = "";
+		
+		for(int i=0; i < alumnos.length; i++) {
+			System.out.println("Escribe el nombre del " + (i+1) + "º alumno.");
+				String nombreAlumno = br.readLine();
+				
+			while(nombreAlumno.isEmpty()) {
+				System.out.println("Lo siento no se puede dejar este nombre en blanco. Intentalo de nuevo con un nombre correcto.");
+					nombreAlumno = br.readLine();
+			}	
+			
+			alumnos[i] = nombreAlumno;
+			
+			alumnosTotales += alumnos[i];
+		}
+		
+		
+		//Rellenar Modulos
+		
+		String modulosTotales = "";
+		
+		for(int j = 0; j < modulos.length; j++) {
+			System.out.println("Escribe el nombre del " + (j+1) + "º modulo.");
+			String nombreModulo = br.readLine();
+			
+		while(nombreModulo.isEmpty()) {
+			System.out.println("Lo siento no se puede dejar este modulo en blanco. Intentalo de nuevo con un modulo correcto.");
+				nombreModulo = br.readLine();
+		}
+		
+			modulos[j] = nombreModulo;
+			
+			modulosTotales += modulos[j];
+		}
+		
+		
+		
+		//Rellenar matriz a 0.
+		
+		for(int i=0; i < alumnos.length; i++) {
+			
+			for(int j = 0; j < modulos.length; j++) {
+				
+				matrizNumeroFaltas[i][j] = 0;
+			}
+			
+		}
+		
+		
+	}
+	
+	
+	//Apartado2.
+	public static void registrarFaltas(String [] alumnos, String [] modulos, int [][] matrizNumeroFaltas) throws IOException {
+		
+		//Indice Alumno
+			System.out.println("Introduce el nombre del alumno al que le quieras poner la falta.");
+				String nombreAlumno = br.readLine();
+			
+				int indiceAlumno = -1;
+				
+				for (int i = 0; i < alumnos.length; i++) {
+					
+					if (nombreAlumno.equalsIgnoreCase(alumnos[i])) {
+						indiceAlumno = i;
+						
+						
+					} 
 				}
-			}
-		}
+				
+				if (indiceAlumno == -1) {
+					System.out.println("Lo siento pero no se ha encontrado al alumno, intentalo de nuevo.");
+				}
 		
-		if(perdida == false)
-			System.out.println("Nadie ha perdido la evaluacion continua. Aun");
+		//Indice Modulo
+			
+				int indiceModulo = -1;
+				
+			System.out.println("Introduce el nombre del modulo del alumno");
+				String nombreModulo = br.readLine();
+				
+				for (int j = 0; j < modulos.length; j++) {
+					
+					if (nombreModulo.equalsIgnoreCase(modulos[j])) {
+						indiceModulo = j;	
+					}
+				}
+				
+				if (indiceModulo == -1) {
+					System.out.println("Lo siento pero no se ha encontrado el modulo, intentalo de nuevo.");
+					
+				}
 		
-	}
-
-
-
-	//OPCION 1
-	public static void opcion1(String[] modulos, String[] alumnos) throws IOException {
-		System.out.println("--REGISTRAR ALYUMNOS Y MODULOS---");
-		
-		for(int i = 0; i<alumnos.length; i++) {
-			do {
-				alumnos[i] = leerString("Introduce el nombre del alumno" + (i+1) + ": ");
-				if(alumnos[i].isEmpty())
-					System.out.println("El nombre del alumno no puede quedar vacio");
-			}while(alumnos[i].isEmpty());
-		}
-		
-		for(int i = 0; i<modulos.length; i++) {
-			do {
-				modulos[i] = leerString("Introduce el nombre del modulo" + (i+1) + ": ");
-				if(modulos[i].isEmpty())
-					System.out.println("El nombre del modulo no puede quedar vacio");
-			}while(modulos[i].isEmpty());
-		}
-		
-		//NO HACE FALTA INICIALIZAR LA MATRIZ PQ YA ES 0 AL SER DE INT
+		//Poner número en la matriz.
+				
+				if (indiceAlumno != -1 && indiceModulo != -1) {
+					
+					System.out.println("Escribe el numero de faltas para el " + alumnos[indiceAlumno] + ", en la asignatura " + modulos[indiceModulo]);
+					int faltasUsuario = Integer.parseInt(br.readLine());
+					
+					matrizNumeroFaltas[indiceAlumno][indiceModulo] = faltasUsuario;
+					
+			System.out.println("La falta se ah registrado Correctamente.");
+				
+				} else {
+					System.out.println("No se ha encontrado al alumno o al modulo introducido, por lo que no se puede poner la falta.");
+					
+				}
+			
 	}
 	
-	//opcion 2
-	public static void opcion2(String[] alumnos, String[] modulos, int[][] faltas) throws IOException {
-		System.out.println("--REGISTRAR FALTA ---");
+	
+	//Apartado3.
+	public static void mostrarTabla(String [] alumnos, String [] modulos, int [][] matrizNumeroFaltas) {
+			
+		System.out.println("\t \t");
 		
-		String nombre = leerString("Introduce el nombre del alumno a poner la falta: " );
-		int indiceAlumno = -1;
-		for(int i = 0; i<alumnos.length; i++) {
-			if(nombre.equalsIgnoreCase(alumnos[i]))
-				indiceAlumno = i;
+		for (int j = 0; j < modulos.length; j++) {
+			System.out.print(modulos[j] + "\t \t");
 			
 		}
-		if(indiceAlumno == -1)
-			System.out.println("No se ha encontrado el alumno en la lista");
 		
-		String modulo = leerString("Introduce el nombre del modulo a poner la falta: " );
-		int indiceModulo = -1;
-		for(int i = 0; i<modulos.length; i++) {
-			if(modulo.equalsIgnoreCase(modulos[i]))
-				indiceModulo = i;
+		System.out.println();
 			
-		}
-		if(indiceModulo == -1)
-			System.out.println("No se ha encontrado el modulo en la lista");
 		
-		if(indiceAlumno != -1 && indiceModulo != -1) {
-			faltas[indiceAlumno][indiceModulo] = leerInt("Introduce el numero de faltas para el alumno " + nombre +
-					" en la asignatura " + modulo);
-			System.out.println("Falta registrada correctamente");
-		}else {
-			System.out.println("No se ha pdido registrar la falta pq "
-					+ "no se ha encontrado el alumno o el modulo");
-		}
-	}
-
-	//OPCION 3
-	public static void opcion3(String[] alumnos, String[] modulos, int[][] faltas) {
-		System.out.println("-- MOSTRAR TABLA -- ");
-		
-		System.out.print("\t\t");
-		for(int i=0; i<modulos.length; i++) {
-			System.out.print(modulos[i] + "\t\t");
-		}
-		System.out.println("");
-		
-		for(int f=0; f<faltas.length; f++) {
-			System.out.print(alumnos[f] + "\t\t");
-			for(int c=0; c<faltas[f].length; c++) {
-				System.out.print(faltas[f][c] + "\t\t" );
+		for (int fila = 0; fila < matrizNumeroFaltas.length; fila++) {
+			System.out.println(alumnos[fila] + "\t \t");
+			
+			for (int columna = 0; columna < matrizNumeroFaltas.length; columna++) {
+				
+				System.out.println(matrizNumeroFaltas[fila][columna] + "\t \t");
 			}
 			System.out.println();
 		}
 		
-		int posConMasFaltas = -1;
+		int posicionConMasFaltas = -1;
+		
 		int faltasMayor = -1;
-		for(int f=0; f<faltas.length; f++) {
+		
+		for( int conlumna = 0; conlumna < matrizNumeroFaltas.length; conlumna++) {
 			int sumaFaltas = 0;
-			for(int c=0; c<faltas[f].length; c++) {
-				sumaFaltas += faltas[f][c];
-				if(sumaFaltas > faltasMayor) {
-					posConMasFaltas = f;
+			
+			for(int fila = 0; fila < matrizNumeroFaltas[conlumna].length; fila++) {
+				
+				sumaFaltas += matrizNumeroFaltas[fila][conlumna];
+				
+				if (sumaFaltas > faltasMayor) {
+					
+					posicionConMasFaltas = fila;
+					
 					faltasMayor = sumaFaltas;
 				}
 			}
+			
 		}
+	}
 		
-		System.out.println("El alumno que más faltas tiene es " + alumnos[posConMasFaltas] + " con " 
-		                            + faltasMayor);
+	
+	//Apartado4.
+	public static void perdidaEvaluacion(String [] alumnos, String [] modulos, int [][] matrizNumeroFaltas) {
 		
-		int moduloMayor = -1;
-		int posConModuloMasFaltas = -1;
-		for(int c=0; c<faltas[0].length; c++) {
-			int sumaFaltas = 0;
-			for(int f=0; f<faltas.length; f++) {
-				sumaFaltas += faltas[f][c];
-				if(sumaFaltas > moduloMayor) {
-					posConModuloMasFaltas = f;
-					moduloMayor = sumaFaltas;
+		for (int fila = 0; fila < matrizNumeroFaltas.length; fila++) {
+			
+			for( int columna = 0; columna < matrizNumeroFaltas.length; columna++) {
+				
+				if (matrizNumeroFaltas[fila][columna] >= 5) {
+					System.out.println("El alumno " + alumnos[fila] + " en la asignatura " + modulos[columna] + " ha perdido la evaluacion continua porque tiene " + matrizNumeroFaltas[fila][columna] + " faltas.");
 				}
 			}
 		}
-		
-		System.out.println("El modulo que más faltas tiene es " + modulos[posConModuloMasFaltas] + " con " 
-                + moduloMayor);
-		
-		
-	}
-
-	//Metodos leer
-	public static int leerInt(String mensaje) throws IOException  {
-		BufferedReader leer = new BufferedReader(new InputStreamReader(System.in));
-		boolean valido = false;
-		int num = -1;
-		do {
-			try {
-				System.out.print(mensaje);
-				num = Integer.parseInt(leer.readLine());
-				valido = true;
-			}catch(NumberFormatException e) {
-				System.out.println("Introduce un numero valido");
-			}
-		}while(!valido);
-		return num;
 	}
 	
-	public static String leerString(String mensaje) throws IOException {
-		BufferedReader leer = new BufferedReader(new InputStreamReader(System.in));
-		System.out.print(mensaje);
-		return leer.readLine();
+	
+	public static void main(String[] args) throws IOException {
+		
+		String [] alumnos = new String [4];
+		
+		String [] modulos = new String [5];
+		
+		int [][] matrizNumeroFaltas = new int [4][5];
+		
+		boolean salir = false;
+		
+		System.out.println("=== BIENVENIDO A [NOMBRE_APP] ===");
+		
+		do {
+		
+		//MOSTRAR MENU
+		
+		System.out.println("\n--- MENÚ PRINCIPAL ---");
+		System.out.println("1. Rellenar Arrays");
+		System.out.println("2. Registrar faltas");
+		System.out.println("3. Mostrar tablas");
+		System.out.println("4. Pérdida de Evalución Contínua.");
+		System.out.println("5. Salir");
+		
+		System.out.print("Elige una opción: ");
+		int opcion = Integer.parseInt(br.readLine());
+		
+		switch (opcion) {
+		
+			case 1:
+			System.out.println("1. Rellenar Arrays");
+			
+				rellenarArrays(alumnos, modulos, matrizNumeroFaltas);
+			
+			break;
+			
+			case 2:
+			System.out.println("2. Registrar faltas");
+				
+				registrarFaltas(alumnos, modulos, matrizNumeroFaltas);
+				
+			break;
+				
+			case 3:
+			System.out.println("3. Mostrar tablas");
+				
+				mostrarTabla(alumnos, modulos, matrizNumeroFaltas);
+				
+			break;
+				
+			case 4:
+			System.out.println("4. Pérdida de Evalución Contínua");
+				
+				perdidaEvaluacion(alumnos, modulos, matrizNumeroFaltas);
+				
+			break;
+				
+			case 5:
+				salir = true;
+				
+				System.out.println("¡Hasta luego!");
+			break;
+			
+		default:
+			System.out.println("Opción no válida");
+		
+		}
+			
+		}while(!salir);
+			
 	}
 
 }
