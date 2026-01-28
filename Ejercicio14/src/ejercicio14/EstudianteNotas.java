@@ -15,7 +15,7 @@ public class EstudianteNotas {
 	
 	private Double[] notas = new Double[6];
 	
-	private int numNotas;
+	private int numNotas = 0;
 	
 	private BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	
@@ -47,7 +47,7 @@ public class EstudianteNotas {
 				datosOK = true;
 				
 			} catch (IOException e) {
-				System.out.println("Has introducido mal algún dato, crack");
+				System.out.println("Has introducido mal algún dato.");
 					e.printStackTrace();
 			}
 
@@ -55,15 +55,28 @@ public class EstudianteNotas {
 
 	}
 	
+	private boolean estaRepetido(EstudianteNotas[] estudiantes, int pos, int idGenerado) {
+		
+		for (int i = 0; i < (pos - 1); i++) {
+			
+			if (estudiantes[i].getId() == idGenerado) {
+				
+				return true;
+			}
+	
+		}
+		return false;
+	
+	}
+	
 	
 	public EstudianteNotas añadirNotas() throws NumberFormatException, IOException {
 		
 		System.out.println("Escribe las notas del alumno " + nombre + " de la asignatura " + asignatura);
 		
-		numNotas = 0;
 		
 		if(numNotas <= notas.length) {
-		
+			
 			System.out.println("Escribe la " + (numNotas +1) + "º nota:");
 				notas[numNotas] = Double.parseDouble(br.readLine());
 				
@@ -94,20 +107,6 @@ public class EstudianteNotas {
 		return null;
 	}
 
-	
-		private boolean estaRepetido(EstudianteNotas[] estudiantes, int pos, int idGenerado) {
-			
-			for (int i = 0; i < (pos - 1); i++) {
-				
-				if (estudiantes[i].getId() == idGenerado) {
-					
-					return true;
-				}
-		
-			}
-			return false;
-		
-		}
 		
 		
 		public int getId() {
@@ -121,42 +120,34 @@ public class EstudianteNotas {
 			
 			System.out.println("Las notas del alumno " + nombre + " son:");
 			
-			for(int i = 0; i < notas.length; i++) {
+			for(int i = 0; i < numNotas; i++) {
 				
 				System.out.print(notas[i] + ", ");
 				
 			}
 			
-		}
-		
-		
-		public void notaMaxima() {
-			
 			double notaMaxima = 0;
 			
-			for(int i = 0; i < numNotas; i++) {
-				
-				if(notas[i] > notaMaxima) {
+				for(int i = 0; i < numNotas; i++) {
 					
-					notaMaxima = notas[i];
+					if(notas[i] > notaMaxima) {
+						
+						notaMaxima = notas[i];
+					}
 				}
-			}
 			
 			System.out.println("la nota máxima del alumno " + nombre + " es " + notaMaxima);
-		}
-		
-		
-		public void notaMinima() {
 			
-			double notaMinima = 0;
+			double notaMinima = 10;
 			
-			for(int i = 0; i < numNotas; i++) {
-				
-				if(notas[i] < notaMinima) {
+				for(int i = 0; i < numNotas; i++) {
 					
-					notaMinima = notas[i];
+					if(notaMinima > notas[i]) {
+						
+						notaMinima = notas[i];
+					}
+					
 				}
-			}
 			
 			System.out.println("la nota mínima del alumno " + nombre + " es " + notaMinima);
 			
@@ -185,32 +176,54 @@ public class EstudianteNotas {
 
 			
 			double notaMedia = 0;
+			double notaFinal = 0;
 			
-			for(int i = 0; i < notas.length; i++) {
+			for(int i = 0; i < numNotas; i++) {
 					
 					notaMedia += notas[i];
 				
 			}
 			
-			System.out.println("La nota media del alumno " + nombre + " es " + notaMedia);
+			notaFinal = notaMedia / numNotas;
+			
+			System.out.println("La nota media del alumno " + nombre + " es " + notaFinal);
 			
 		}
 		
-		public void mejorMedia(EstudianteNotas[] estudiantes, double notaMedia) {
+		
+		public void mejorMedia(EstudianteNotas[] estudiantes, double notaFinal) {
 			
 			double mejorMedia = 0;
 			
-			for(int i = 0; i < notas.length; i++) {
+			for(int i = 0; i < numNotas; i++) {
 				
-				if(notaMedia > mejorMedia) {
+				if(notaFinal > mejorMedia) {
 					
-					mejorMedia = notaMedia;
+					mejorMedia = notaFinal;
 					
 				}
 				
 			}
 			
-			System.out.println("La nota media del mejor alumno es " + notaMedia + " y ese alumno es: " + nombre);
+			System.out.println("La nota media del mejor alumno es " + mejorMedia + " y ese alumno es: " + nombre);
+		}
+		
+		
+		public Double[] getNotas() {
+			
+			return notas;
+		}
+		
+		
+		public String getNombre() {
+			
+			return nombre;
+		}
+		
+		
+		public int getNumNotas() {
+			
+			return numNotas;
 		}
 	
 }

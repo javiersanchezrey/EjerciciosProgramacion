@@ -77,6 +77,7 @@ public class Principal {
 				
 				System.out.println("Escribe el ID del estudiante al que le quieras ver las notas:");
 					id =Integer.parseInt(br.readLine());
+					
 				
 				todoOK = true;
 			
@@ -91,10 +92,7 @@ public class Principal {
 				
 				if (id == estudiantes[i].getId()) {
 					
-					estudiantes[i].notaMaxima(); 
-					
-					
-					estudiantes[i].notaMinima();;
+					estudiantes[i].mostrarNotas(); 
 					
 				}
 				 
@@ -128,7 +126,11 @@ public class Principal {
 		
 			for(int i = 0; i < estudiantes.length; i++) {
 				
-				estudiantes[i].notaMedia();
+				if(estudiantes[i].getId() == id) {
+					
+					estudiantes[i].notaMedia();
+					
+				}
 			}
 		
 	}
@@ -138,7 +140,10 @@ public class Principal {
 		
 		System.out.println("===  Estudiante Brillante  ===");
 		
-		
+		for(int i = 0; i < estudiantes.length; i++) {
+				
+				estudiantes[i].mejorMedia(estudiantes, i);
+		}
 		
 	}
 
@@ -146,6 +151,28 @@ public class Principal {
 	private static void alertaSuspensos(EstudianteNotas[] estudiantes) {
 		
 		System.out.println("===  Alerta de Suspensos  ===");
+		
+		for(int i = 0; i < estudiantes.length; i++) {
+			
+		Double[] notasEstudiantes = estudiantes[i].getNotas();
+			
+			boolean haySuspensos = false;
+			
+				for(int j = 0; j < estudiantes[i].getNumNotas(); j++) {
+					
+					if(notasEstudiantes[j] < 5) {
+						haySuspensos = true;
+					
+					}
+					
+				}
+		
+				
+				if(haySuspensos) {
+					System.out.println("El estudiante " + estudiantes[i]+ " esta suspenso.");
+				}
+		}
+		
 		
 	}
 	
@@ -158,7 +185,8 @@ public class Principal {
 		  
 		  boolean salir = false;
 			do {
-				System.out.println("== GESTIÓN DE OFERTAS POR GROENLANDIA  ==");
+				System.out.println();
+				System.out.println("== GESTIÓN NOTAS ESTUDIANTES  ==");
 				System.out.println("1. Registrar estudiante");
 				System.out.println("2  Añadir nota");
 				System.out.println("3. Ver calificaciones ");
