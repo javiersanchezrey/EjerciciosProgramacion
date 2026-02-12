@@ -10,9 +10,9 @@ public class Podcast extends Contenido{
 	
 	private char transcripcion;
 	
-	public void añadirContenido() throws IOException {
+	public void añadirContenido(int id) throws IOException {
 		
-		super.añadirContenido();
+		super.añadirContenido(id);
 			System.out.println("Introduce el nombre del presentador");
 				presentador = br.readLine();
 				
@@ -24,6 +24,16 @@ public class Podcast extends Contenido{
 					transcripcion = br.readLine().charAt(0);	
 					
 				}while(transcripcion != 'S' | transcripcion != 'N');
+	}
+	
+	
+	public void mostrarContenido() {
+		
+		super.mostrarContenido();
+			System.out.println("El nombre del presentador es: " + presentador);
+			System.out.println("El numero de Episodios totales son: " + numeroEpisodio);
+			System.out.println("¿Tiene transcripción? " + transcripcion);
+		
 	}
 
 	

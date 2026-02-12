@@ -22,7 +22,9 @@ public class Contenido {
 	//----------------------------------------//
 	public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	
-	public void añadirContenido() throws IOException {
+	public void añadirContenido(int id) throws IOException {
+		
+		this.id = id;
 		
 		boolean todoOK = false;
 		
@@ -65,7 +67,18 @@ public class Contenido {
 	
 	public void mostrarContenido() {
 		
+		System.out.println("Mostrando el contenido del " + id + "º contenido");
+		System.out.println("El ID del contenido es: " + id);
+		System.out.println("El titulo es " + titulo);
+		System.out.println("La categoría es " + categoria);
+		System.out.println("Las reproducciones totales son " + reproduccionesTotales);
+		System.out.println("¿Está en una Playlist activa? " + playlistActiva);
 		
+	}
+	
+	
+	public String getTitulo() {
+		return titulo;
 		
 	}
 	
