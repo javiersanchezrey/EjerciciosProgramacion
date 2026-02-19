@@ -108,25 +108,6 @@ public class Nacional extends Pedidos{
 		super.setEstado(nuevoEstado);
 	}
 	
-	
-	public void calculoFacturacion() {
-		
-		double Subtotal = 0;
-		
-		for (int i = 0; i < listaProductos.size(); i++) {		
-			
-			Pedidos P = listaProductos.get(i);
-			
-			double precioProducto = P.cantidad * P.precioUnitario;
-			
-			Subtotal += precioProducto;
-		}
-		
-		double precioTotal = Subtotal + 5;
-		
-		System.out.println("El subtotal del pedido es: " + Subtotal);
-		System.out.println("El precio final ya con gastos de envío es de: " + precioTotal);
-	}
 
 
 	public int getCantidad() {

@@ -111,24 +111,20 @@ public void cambioDeEstado() throws IOException {
 }
 
 
-public void calculoFacturacion() {
-	
-	double Subtotal = 0;
-	
-	for (int i = 0; i < listaProductos.size(); i++) {
-		
-		double precio = 0;
-		
-			precio = cantidad * precioUnitario;
-			
-		Subtotal += precioUnitario;
-		
-	}
-	
-	double precioTotal = Subtotal + 20 + tasaDeAduana;
-	
-	System.out.println("El subtotal del pedido es: " + Subtotal);
-	System.out.println("El precio final ya con gastos de envío es de: " + precioTotal);
+public int getTasaDeAduana() {
+	return tasaDeAduana;
 }
+
+
+public int getCantidad() {
+	return cantidad;
+}
+
+
+public double getPrecioUnitario() {
+	return precioUnitario;
+}
+
+
 
 }

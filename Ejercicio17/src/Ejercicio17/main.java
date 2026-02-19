@@ -108,6 +108,11 @@ boolean todoOK = false;
 		}
 		
 		boolean encontrado = false;
+		
+		double subtotal = 0;
+		
+		double total = 0;
+		
 		for(Pedidos P: pedidos) {
 			
 			if(idABuscar == P.getId()) {
@@ -116,14 +121,25 @@ boolean todoOK = false;
 				
 				if(P instanceof Nacional) {
 					
-					((Nacional)P).calculoFacturacion();
+				double precioProductos = ((Nacional)P).getPrecioUnitario() * ((Nacional)P).getCantidad();
+					
+				subtotal += precioProductos;
+				
+				total = subtotal + 5;
+					
 					
 				} else {
 					
-					((Internacional)P).calculoFacturacion();
+					double precioProductos = ((Internacional)P).getPrecioUnitario() * ((Internacional)P).getCantidad();
+					
+					subtotal += precioProductos;
+					
+					total = subtotal + 20 + ((Internacional)P).getTasaDeAduana();
 					
 				}	
 			}
+			
+			System.out.println("El total a pagar es de: " + total +" €.");
 		}
 		
 		if (!encontrado) {
