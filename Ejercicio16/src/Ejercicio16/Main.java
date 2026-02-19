@@ -7,161 +7,218 @@ import java.util.ArrayList;
 
 public class Main {
 
-private static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	private static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
 	
 	public static void main(String[] args) throws IOException {
-		
+			
 			ArrayList<Deportistas> deportistas = new ArrayList<Deportistas>();
 		
 			boolean salir = false;
-
 			do {
-				System.out.println("== CONCESIONARIO NO QUEREMOS HACER UN EXAMEN ==");
+				System.out.println("\n=== HOSPITAL ===");
 				System.out.println("1. Registrar Deportista");
-				System.out.println("2. Añadir Torneo a Tenista");
-				System.out.println("3. Mostrar todos los Deportistas");
+				System.out.println("2. Añadir torneo a Tenista");
+				System.out.println("3. Mostrar todos los deportistas");
 				System.out.println("4. Buscar por Equipo");
 				System.out.println("5. Ranking de Tenis");
-				System.out.println("6. Estadísticas Globales");
+				System.out.println("6. Estadisticas Globales");
 				System.out.println("7. Salir");
-				System.out.println("Introduce una opcion: ");
-				int opcion = Integer.parseInt(br.readLine());
+				System.out.print("Introduce una opción: ");
+
+				int opcion = -1;
+				boolean datosOK = false;
+				while (!datosOK) {
+					try {
+						opcion = Integer.parseInt(br.readLine());
+						datosOK = true;
+					} catch (NumberFormatException | IOException e) {
+						System.err.println("Solo puedes introducir números");
+					}
+				}
 
 				switch (opcion) {
+				
 				case 1:
-					System.out.println("Registrar Deportista");
+					System.out.println("=== Registrar Deportista ===");
+
+						registrarDeportista(deportistas);
 					
-						registrarDeportistas(deportistas);
-						
 					break;
-				case 2:
-					System.out.println("Añadir Torneo a Tenista");
 					
+				case 2:
+					System.out.println("=== Añadir torneo a Tenista ===");
+
 						añadirTorneoATenista(deportistas);
 					
 					break;
+					
 				case 3:
-					System.out.println("Mostrar todos los Deportistas");
+					System.out.println("=== Mostrar todos los deportistas ===");
 					
 						mostrarTodosLosDeportistas(deportistas);
+						
 					
 					break;
+					
 				case 4:
-					System.out.println("Buscar por Equipo");
+					System.out.println("=== Buscar por Equipo ===");
 					
 						buscarPorEquipo(deportistas);
-						
+					
 					break;
 					
+				
 				case 5:
-					System.out.println("Ranking de Tenis");
+					System.out.println("=== Ranking de Tenis ===");
 					
-						rankingTenis(deportistas);
-						
+						rankingTenistas(deportistas);
+					
 					break;
 					
 				case 6:
-					System.out.println("Estadísticas Globales");
+					System.out.println("=== Estadisticas Globales ===");
 					
-						
-						
+						estadisticasGlobales(deportistas);
+					
 					break;
 					
 				case 7:
-					System.out.println("Saliendo de sistema...");
-						salir = true;
-						
+					System.out.println("Saliendo del concesionario");
+					salir = true;
 					break;
+					
+				default:
+					System.out.println("Opción no válida");
 				}
-				
+
 			} while (!salir);
 		}
 
-	
-	private static void rankingTenis(ArrayList<Deportistas> deportistas) {
+
+	private static void estadisticasGlobales(ArrayList<Deportistas> deportistas) {
 		
 		boolean todoOK = false;
 		
-		int mejorPosicion = 100;
+		int totalGoles = 0;
+		int totalFutbolistas = 0;
 		
-		while(!todoOK) {
-			
-			for(Deportistas D: deportistas) {
+		for(Deportistas D: deportistas) {
+			if(D instanceof Futbolistas) {
 				
-				if(D instanceof Tenista) {
-					
-					((Tenista)D).getPosicionRanking();
-					
-					
-					
-				}
+				totalGoles += ((Futbolistas)D).getNumeroGoles();
+				totalFutbolistas ++;
 				
 			}
-			
 		}
 		
+		System.out.println("La media de goles es: " + (totalGoles / totalFutbolistas));
 	}
 
 
-	private static void buscarPorEquipo(ArrayList<Deportistas> deportistas) {
-		
+	private static void rankingTenistas(ArrayList<Deportistas> deportistas) {
+
 		boolean todoOK = false;
 		
-		String equipoAEncontrar = "";
+		int numeroLimite = -1;
 		
 		while(!todoOK) {
 			
 			try {
 				
-				System.out.println("Escribe el nombre del equipo a buscar.");
-					equipoAEncontrar = br.readLine();
+				System.out.println("Escribe la posición de filtrado de tenistas.");
+					numeroLimite = Integer.parseInt(br.readLine());
 				
-					todoOK = true;
-			} catch(NumberFormatException | IOException e) {
+				todoOK = true;
+			}catch(NumberFormatException | IOException e) {
+				System.err.println("Has escrito algun dato mal.");
+					e.printStackTrace();
+			}
+			
+		}
+			
+		boolean encontrado = false;
+			for(Deportistas D: deportistas){
 				
-				System.err.println("Lo siento pero has introducido algún dato mal.");
+				if (D instanceof Tenistas) {
+			
+						if(((Tenistas)D).getPosicionRanking() <= numeroLimite){
+							encontrado = true;
+							
+							((Tenistas)D).getNombre();
+						}
+				}
+			}
+			
+			if(!encontrado) {
+				System.err.println("Lo siento pero no se ha encontrado al tenista.");
+				
+			}
+	}
+
+
+	private static void buscarPorEquipo(ArrayList<Deportistas> deportistas) {
+		
+		String equipoABuscar = "";
+		
+		boolean todoOK = false;
+		
+		
+		while(!todoOK) {
+			
+			try {
+				
+				System.out.println("Escribe el el equipo a buscar");
+				equipoABuscar = br.readLine();
+			
+			todoOK = true;
+				
+			}catch(NumberFormatException | IOException e) {
+				System.out.println("Has escrito algun dato mal.");
 					e.getStackTrace();
 			}
 			
-			for(Deportistas D: deportistas) {
+		}
+		 boolean encontrado = false;
+		for(Deportistas D: deportistas) {
+			
+			if(D instanceof Futbolistas) {
 				
-				if(D instanceof Futbolista) {
+				if(((Futbolistas)D).getEquipoActual().equalsIgnoreCase(equipoABuscar))  {
+					encontrado = true;
 					
-					if(((Futbolista) D).getEquipoActual().equalsIgnoreCase(equipoAEncontrar)) {
-						
-						((Futbolista)D).mostrarEquipo(deportistas, equipoAEncontrar);
-						
-					} else {
-						System.err.println("No se ha encontrado ningún futbolista en el equipo");
-					}
+						D.mostrarDatos();
 				}
+			}
+			
+			if(!encontrado) {
+				System.out.println("No existen deportistas en ese equipo.");
 			}
 		}
 	}
 
 
 	private static void mostrarTodosLosDeportistas(ArrayList<Deportistas> deportistas) {
-		
+
 		for(Deportistas D: deportistas) {
 			
-			if(D instanceof Futbolista) {
-				((Futbolista)D).mostrarDatos();
-			
+			if(D instanceof Futbolistas) {
+				
+				((Futbolistas)D).mostrarDatos();
+				
 			} else {
 				
-				((Tenista)D).mostrarDatos();
+				((Tenistas)D).mostrarDatos();
 			}
-			
 		}
 		
 	}
 
 
-	private static void añadirTorneoATenista(ArrayList<Deportistas> deportistas) {
-		
-		int buscarDNI = -1;
-		
+	private static void registrarDeportista(ArrayList<Deportistas> deportistas) throws IOException {
+
 		boolean todoOK = false;
+		String tipoDeportista = "";
 		
 		while(!todoOK) {
 			
@@ -169,91 +226,75 @@ private static BufferedReader br = new BufferedReader(new InputStreamReader(Syst
 				
 				do {
 					
-					System.out.println("Escribe el DNI del tenista para añadirle un torneo.");
-						buscarDNI = Integer.parseInt(br.readLine());
+					System.out.println("Que quieres añadir un futbolista o un tenista");
+						tipoDeportista = br.readLine();
 					
-				} while (buscarDNI < 0);
-				
+						if(!tipoDeportista.equalsIgnoreCase("Futbolista") && !tipoDeportista.equalsIgnoreCase("tenista")) {
+							System.err.println("Los siento pero solo puede ser una de las anteriores.");
+						}
+						
+				}while(!tipoDeportista.equalsIgnoreCase("Futbolista") && !tipoDeportista.equalsIgnoreCase("tenista"));
+			
 				todoOK = true;
-			} catch(NumberFormatException | IOException e) {
 				
-				System.err.println("Lo siento pero has introducido algún dato mal.");
+			}catch(NumberFormatException | IOException e) {
+				System.out.println("Has escrito algun dato mal.");
 					e.getStackTrace();
 			}
 			
-			boolean encontrado = false;
-			
-			for(Deportistas D: deportistas) {
+			if(tipoDeportista.equalsIgnoreCase("Futbolista")) {
 				
-				if(D.getDNI() == buscarDNI) {
-					
-					if(D instanceof Tenista) {
-						((Tenista)D).añadirTorneo();
-					
-						encontrado = true;
-					} else {
-						System.err.println("El DNI introducido no es el de un tenista.");
-					}
-					
-				}
+				Futbolistas futbolista = new Futbolistas();
+					deportistas.add(futbolista);
 				
-				if(encontrado) {
-					System.err.println("No se ha encontrado el DNI.");
-					
-				}
+			}else {
+				Tenistas tenista = new Tenistas();
+					deportistas.add(tenista);
 				
-			}
-			
+			}	
 		}
-		
 	}
+	
+	
+	private static void añadirTorneoATenista(ArrayList<Deportistas> deportistas) {
 
-
-	private static void registrarDeportistas(ArrayList<Deportistas> deportistas) throws IOException {
+		int dniABuscar = 0;
 		
 		boolean todoOK = false;
 		
-		String tipoCategoria = "";
 		
 		while(!todoOK) {
 			
 			try {
 				
-					do {
-						
-						System.out.println("Escribe la categoría del deportista (Futbolista o profesional)");
-						tipoCategoria = br.readLine();
-						
-						if (!tipoCategoria.equalsIgnoreCase("Futbolista") && !tipoCategoria.equalsIgnoreCase("profesional")){
-							System.err.println("Solo puede ser una de las categorías anteriores.");
-						}
-						
-					} while(!tipoCategoria.equalsIgnoreCase("Futbolista") && !tipoCategoria.equalsIgnoreCase("profesional"));
-				
-				todoOK = true;
-			} catch(NumberFormatException | IOException e) {
-				
-				System.err.println("Lo siento pero has introducido algún dato mal.");
-					e.getStackTrace();
-			}
+				System.out.println("Escribe el DNI del tenista a buscar");
+				dniABuscar = Integer.parseInt(br.readLine());
 			
-			if(tipoCategoria.equalsIgnoreCase("Futbolista")) {
-				Futbolista F = new Futbolista();
-					
-					F.añadirDatos(deportistas);
-						deportistas.add(F);
-
-			} else {
+			todoOK = true;
 				
-				Tenista T = new Tenista();
-					
-					T.añadirDatos(deportistas);
-						deportistas.add(T);
-				
+			}catch(NumberFormatException | IOException e) {
+				System.out.println("Has escrito algun dato mal.");
+					e.getStackTrace();
 			}
 			
 		}
 		
+		boolean encontrado = false;
+		for(Deportistas D: deportistas) {
+			
+			if(dniABuscar == D.getDNI()) {
+				
+				encontrado = true;
+				
+				if(D instanceof Tenistas) {
+					
+					((Tenistas) D).añadirTorneo();
+					
+				} else {
+					System.err.println("No se a encontrado a ningún tenista.");
+				}
+			}
+		}
 	}
 	
 	

@@ -6,46 +6,33 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class Deportistas extends Personas{
-
-	private String deporteQuePractican;
+	
+	private String deportePactica;
 	
 	private String categoria;
-	
+
 	private static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	
-	
-	public void añadirDatos(ArrayList<Deportistas> deportistas) throws IOException {
+	public void añadirDatos(ArrayList<Deportistas> deportista) throws NumberFormatException, IOException {
 		
-		super.añadirDatos(deportistas);
-		
-			System.out.println("Escribe el deporte que practica.");
-				deporteQuePractican = br.readLine();
+		super.añadirDatos(deportista);
+			System.out.println("Escribe el deporte que practica el Deportista.");
+				deportePactica = br.readLine();
 				
-				do {
-					
-					System.out.println("Escribe la categoria del deporte que practica.");
+			do {
+				
+				System.out.println("Escribe su categoría. (Amateur o Profesional)");
 					categoria = br.readLine();
 					
-					if (!categoria.equalsIgnoreCase("amateur") && !categoria.equalsIgnoreCase("profesional")){
-						System.err.println("Solo puede ser una de las categorías anteriores.");
+					if(!categoria.equalsIgnoreCase("Amateur") && !categoria.equalsIgnoreCase("Profesional")) {
+						
+						System.err.println("Lo siento pero solo puede ser una de las anteriores categorías.");
 					}
-				} while(!categoria.equalsIgnoreCase("amateur") && !categoria.equalsIgnoreCase("profesional"));
+				
+			} while(!categoria.equalsIgnoreCase("Amateur") && !categoria.equalsIgnoreCase("Profesional"));
 	}
 	
 	public int getDNI() {
 		return super.getDNI();
 	}
-	
-	public String getNombre() {
-		return super.getNombre();
-	}
-	
-	public void mostrarDatos() {
-		
-		super.mostrarDatos();
-		
-		System.out.println("El deporte que practica es: " + this.deporteQuePractican);
-		System.out.println("Su categoria es: " + this.categoria);
-	}
-	
 }
